@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Renewable Energy Forecasting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Solar Power Generation Forecasting</h1>
+
+    <form action="/predict" method="post">
+
+        <label>Ambient Temperature (°C)</label>
+        <input type="number" step="0.01" name="ambient" required>
+
+        <label>Module Temperature (°C)</label>
+        <input type="number" step="0.01" name="module" required>
+
+        <label>Irradiation</label>
+        <input type="number" step="0.01" name="irradiation" required>
+
+        <label>Hour</label>
+        <input type="number" name="hour" min="0" max="23" required>
+
+        <label>Day</label>
+        <input type="number" name="day" min="1" max="31" required>
+
+        <label>Month</label>
+        <input type="number" name="month" min="1" max="12" required>
+
+        <button type="submit">Predict Power</button>
+
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <h2>Predicted Solar Power</h2>
+        <p>{{ prediction }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
